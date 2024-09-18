@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Durham, NC - 商业、学校、医疗机构和住宅区分布</title>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.3/dist/leaflet.css" />
+    <style>
+        #map {
+            height: 100vh;
+        }
+    </style>
+</head>
+<body>
+    <div id="map"></div>
+
+    <script src="https://unpkg.com/leaflet@1.9.3/dist/leaflet.js"></script>
+    <script>
+        // 初始化地圖，聚焦於 Durham, NC 的 611 Broad Street
+        var map = L.map('map').setView([35.9972, -78.9028], 14); // 設置地圖的中心點
+
+        // 加入 OpenStreetMap 圖層
+        L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+            attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
+        }).addTo(map);
+
+        // 添加 611 Broad Street 的標記
+        L.marker([35.9972, -78.9028]).addTo(map)
+            .bindPopup('611 Broad Street: 商業地點')
+            .openPopup();
+
+        // 添加 Durham Public Schools 的標記
+        L.marker([35.9940, -78.8986]).addTo(map)
+            .bindPopup('Durham Public Schools: 学校');
+
+        // 添加 Duke University Hospital 的標記
+        L.marker([36.0007, -78.9367]).addTo(map)
+            .bindPopup('Duke University Hospital: 医疗机构');
+
+        // 添加一个住宅区的标记
+        L.marker([35.9961, -78.9040]).addTo(map)
+            .bindPopup('住宅区 1');
